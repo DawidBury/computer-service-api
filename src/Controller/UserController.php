@@ -1,19 +1,22 @@
-<?php declare(strict_types=1);
+<?php
 
+declare(strict_types=1);
 
 namespace App\Controller;
 
-
+use App\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends AbstractController
 {
-    public function register(Request $request)
+    public function register(Request $request, UserService $userService): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
 
-        return new JsonResponse(['test'], JsonResponse::HTTP_CREATED);
+        $user = $userService->createUser($data['username'], $data['password']);
+
+        return new JsonResponse($user, JsonResponse::HTTP_CREATED);
     }
 }
