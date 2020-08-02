@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Exception\ValidationException;
 use Symfony\Component\Validator\Constraints\Collection;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -24,8 +25,7 @@ class ValidatorService
         $errors = $this->symfonyValidator->validate($data, $constraints);
 
         if ($errors->count()) {
-            //@TODO CREATE CUSTOM EXCEPTION
-            throw new \Exception();
+            throw new ValidationException($this->errorSerializerService->serialize($errors));
         }
     }
 }
