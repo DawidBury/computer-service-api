@@ -22,4 +22,9 @@ class UserController extends AbstractBaseController
 
         return new JsonResponse($user, JsonResponse::HTTP_CREATED);
     }
+
+    public function getUsers(UserService $userService)
+    {
+        return new JsonResponse($userService->getUsers(), JsonResponse::HTTP_OK);
+    }
 }
