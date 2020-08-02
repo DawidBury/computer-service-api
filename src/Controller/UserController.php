@@ -20,11 +20,19 @@ class UserController extends AbstractBaseController
 
         $user = $userService->createUser($data['username'], $data['password']);
 
-        return new JsonResponse($user, JsonResponse::HTTP_CREATED);
+        $serializedUser = $this->_serializer->normalize($user, 'array', [
+            'groups' => 'user:post'
+        ]);
+
+        return new JsonResponse($serializedUser, JsonResponse::HTTP_CREATED);
     }
 
     public function getUsers(UserService $userService)
     {
-        return new JsonResponse($userService->getUsers(), JsonResponse::HTTP_OK);
+        $users = $this->_serializer->normalize($userService->getUsers(), 'array', [
+            'groups' => 'user:get'
+        ]);
+
+        return new JsonResponse($users, JsonResponse::HTTP_OK);
     }
 }

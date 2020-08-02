@@ -7,27 +7,34 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
  */
-class User implements UserInterface, \JsonSerializable
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @Groups({"user:get", "user:post"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     *
+     * @Groups({"user:get", "user:post"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
+     *
+     * @Groups({"user:get"})
      */
     private $roles = [];
 
@@ -98,14 +105,5 @@ class User implements UserInterface, \JsonSerializable
 
     public function eraseCredentials()
     {
-    }
-
-    public function jsonSerialize()
-    {
-        return [
-            'id' => $this->getId(),
-            'email' => $this->getEmail(),
-            'roles' => $this->getRoles()
-        ];
     }
 }
