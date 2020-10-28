@@ -7,7 +7,6 @@ namespace App\Repository;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,25 +16,8 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  */
 class UserRepository extends ServiceEntityRepository
 {
-    /**
-     * @var UserPasswordEncoderInterface
-     */
-    private $encoder;
-
-    public function __construct(ManagerRegistry $registry, UserPasswordEncoderInterface $encoder)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
-        $this->encoder = $encoder;
-    }
-
-    public function createUser(string $email, string $password)
-    {
-        $user = new User($email);
-        $user->setPassword($this->encoder->encodePassword($user, $password));
-
-        $this->_em->persist($user);
-        $this->_em->flush();
-
-        return $user;
     }
 }
