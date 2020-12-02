@@ -44,6 +44,16 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Employee", mappedBy="user")
+     */
+    private $employee;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Customer", mappedBy="user")
+     */
+    private $customer;
+
     public function __construct(string $email)
     {
         $this->email = $email;

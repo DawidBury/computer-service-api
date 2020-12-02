@@ -33,9 +33,15 @@ class Employee
     private $businessNumber;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ServiceRequest", mappedBy="employeeId")
+     * @ORM\OneToMany(targetEntity="App\Entity\ServiceRequest", mappedBy="employee")
      */
     private $serviceRequests;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="employee")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
 
     public function getId(): ?int
     {

@@ -51,13 +51,13 @@ class ServiceRequest
      * @ORM\ManyToOne(targetEntity="App\Entity\Customer", inversedBy="serviceRequests")
      * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
      */
-    private $customerId;
+    private $customer;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Employee", inversedBy="serviceRequests")
      * @ORM\JoinColumn(name="employee_id", referencedColumnName="id")
      */
-    private $employeeId;
+    private $employee;
 
     public function getId(): ?int
     {

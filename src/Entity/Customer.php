@@ -33,7 +33,7 @@ class Customer
     private $birthday;
 
     /**
-     * @ORM\Column(type="integer", length=32, nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $gender;
 
@@ -58,9 +58,15 @@ class Customer
     private $nip;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ServiceRequest", mappedBy="customerId")
+     * @ORM\OneToMany(targetEntity="App\Entity\ServiceRequest", mappedBy="customer")
      */
     private $serviceRequests;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="customer")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
 
     public function getId(): ?int
     {
