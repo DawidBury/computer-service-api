@@ -1,0 +1,16 @@
+default:
+    suites:
+        default:
+            contexts:
+                - behatch:context:json
+                - behatch:context:rest
+                - Behat\MinkExtension\Context\MinkContext
+
+    extensions:
+        FriendsOfBehat\SymfonyExtension:
+            bootstrap: 'config/behat/bootstrap.php'
+        Behatch\Extension: ~
+        Behat\MinkExtension:
+            sessions:
+                default:
+                    symfony: ~

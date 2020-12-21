@@ -23,6 +23,10 @@
         "zircote/swagger-php": "^3.1"
     },
     "require-dev": {
+        "behat/behat": "^3.8",
+        "behatch/contexts": "^3.3",
+        "friends-of-behat/mink-browserkit-driver": "^1.4",
+        "friends-of-behat/symfony-extension": "^2.1",
         "symfony/maker-bundle": "^1.20"
     },
     "config": {
