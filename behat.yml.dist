@@ -3,14 +3,24 @@ default:
         default:
             contexts:
                 - behatch:context:json
-                - behatch:context:rest
+                - App\Tests\Behat\FeatureContext
                 - Behat\MinkExtension\Context\MinkContext
 
     extensions:
         FriendsOfBehat\SymfonyExtension:
             bootstrap: 'config/behat/bootstrap.php'
+            kernel:
+                environment: test
         Behatch\Extension: ~
         Behat\MinkExtension:
             sessions:
                 default:
                     symfony: ~
+        AdamQuaile\Behat\CommandRunnerExtension:
+            beforeFeature:
+                - rm -rf ./var/cache/test/*
+                - php bin/console --env=test doctrine:database:drop --force --if-exists
+                - php bin/console --env=test doctrine:database:create
+                - php bin/console --env=test doctrine:schema:update --force
+            afterSuite:
+                - php bin/console --env=test doctrine:database:drop --force --if-exists
