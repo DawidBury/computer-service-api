@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Controller;
 
@@ -18,7 +16,7 @@ class UserController extends AbstractBaseController
             CreateUserConstraints::get()
         );
 
-        $user = $userService->createUser($data['username'], $data['password']);
+        $user = $userService->createUser($data['email'], $data['password']);
 
         $serializedUser = $this->_serializer->normalize($user, 'array', [
             'groups' => 'user:post'

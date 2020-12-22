@@ -1,9 +1,9 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Constraints;
 
+use App\Constraints\CustomConstraints\UniqueField;
+use App\Entity\User;
 use Symfony\Component\Validator\Constraints\Collection;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -16,11 +16,11 @@ class CreateUserConstraints
         return new Collection([
             'allowExtraFields' => true,
             'fields' => [
-                'username' => [
+                'email' => [
                     new NotBlank(),
                     new Type('string'),
-                    new Email()
-                    //@TODO Check if email exist
+                    new Email(),
+                    new UniqueField(['entity' => User::class, 'field' => 'email'])
                 ],
                 'password' => [
                     new NotBlank(),

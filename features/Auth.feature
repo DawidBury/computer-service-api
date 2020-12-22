@@ -9,7 +9,7 @@ Feature:
         And I send a "POST" request to "/api/users/register" with body:
         """
         {
-            "username": "",
+            "email": "",
             "password": "Testowe123!"
         }
         """
@@ -22,7 +22,7 @@ Feature:
         And I send a "POST" request to "/api/users/register" with body:
         """
         {
-            "username": "dawidbury1998@gmail.com",
+            "email": "dawidbury1998@gmail.com",
             "password": "Testowe123!"
         }
         """
