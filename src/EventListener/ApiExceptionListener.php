@@ -1,11 +1,9 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\EventListener;
 
 use App\Exception\ApiExceptionInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Utils\ApiResponse;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 
 class ApiExceptionListener
@@ -18,24 +16,14 @@ class ApiExceptionListener
             return;
         }
 
-        $response = new JsonResponse($this->buildResponseData($exception));
-        $response->setStatusCode($exception->getCode());
-
-        $event->setResponse($response);
+        $event->setResponse(
+            $this->createApiResponse($exception)
+        );
     }
 
-    private function buildResponseData(ApiExceptionInterface $exception): array
+    private function createApiResponse($exception)
     {
-        $messages = json_decode($exception->getMessage(), true);
-        if (!is_array($messages)) {
-            $messages = $exception->getMessage() ? [$exception->getMessage()] : [];
-        }
-
-        return [
-            'error' => [
-                'code' => $exception->getCode(),
-                'messages' => $messages
-            ]
-        ];
+        $parsedString = str_replace('"', "", $exception->getMessage());
+        return new ApiResponse($parsedString, null, [], $exception->getCode());
     }
 }
