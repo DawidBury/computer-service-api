@@ -39,4 +39,19 @@ class UserService
     {
         return $this->userRepository->findAll();
     }
+
+    public function createBasicUsers(): void
+    {
+        $user = new User('example@admin.pl');
+        $user->setPassword($this->encoder->encodePassword($user, 'qwerty123!'));
+        $user->setRoles(['ROLE_ADMIN']);
+        $this->em->persist($user);
+        $this->em->flush();
+
+        $user = new User('example@user.pl');
+        $user->setPassword($this->encoder->encodePassword($user, 'qwerty123!'));
+        $user->setRoles(['ROLE_USER']);
+        $this->em->persist($user);
+        $this->em->flush();
+    }
 }
