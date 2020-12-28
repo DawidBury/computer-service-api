@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Tests\Behat;
 
@@ -8,17 +10,20 @@ use Behatch\HttpCall\Request;
 use Behatch\Json\Json;
 use Behatch\Json\JsonInspector;
 use Doctrine\ORM\EntityManagerInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 
 class FeatureContext extends RestContext
 {
     private $inspector;
     private $em;
+    private $jwtManager;
 
-    public function __construct(Request $request, EntityManagerInterface $em)
+    public function __construct(Request $request, EntityManagerInterface $em, JWTTokenManagerInterface $jwtManager)
     {
         parent::__construct($request);
         $this->inspector = new JsonInspector('javascript');
         $this->em = $em;
+        $this->jwtManager = $jwtManager;
     }
 
     /**
@@ -55,5 +60,21 @@ class FeatureContext extends RestContext
     {
         $user = $this->em->getRepository(User::class)->findOneBy(['email' => $email]);
         $this->assertTrue(in_array($role, $user->getRoles()));
+    }
+
+    /**
+     * @BeforeScenario @login
+     */
+    public function login(): void
+    {
+        $user = new User(
+            'test@test.pl'
+        );
+        $user->setPassword('Testowe123!');
+        $this->em->persist($user);
+        $this->em->flush();
+
+        $token = $this->jwtManager->create($user);
+        $this->iAddHeaderEqualTo('Authorization', "Bearer $token");
     }
 }

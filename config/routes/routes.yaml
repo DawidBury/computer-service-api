@@ -1,3 +1,4 @@
+#USER
 api.users.register:
     path: /users/register
     controller: App\Controller\UserController::register
@@ -7,3 +8,9 @@ api.users.get_all:
     path: /users
     controller: App\Controller\UserController:getUsers
     methods: GET
+
+#CMS
+api.cms.create:
+    path: /cms
+    controller: App\Controller\CMSController:create
+    methods: POST
