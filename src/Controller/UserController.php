@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Constants\Roles;
 use App\Constraints\CreateUserConstraints;
 use App\Service\UserService;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -27,6 +28,8 @@ class UserController extends AbstractBaseController
 
     public function getUsers(UserService $userService)
     {
+        $this->denyAccessUnlessGranted(Roles::ADMIN);
+
         $users = $this->_serializer->normalize($userService->getUsers(), 'array', [
             'groups' => 'user:get'
         ]);

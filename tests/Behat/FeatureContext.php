@@ -2,22 +2,23 @@
 
 namespace App\Tests\Behat;
 
+use App\Entity\User;
 use Behatch\Context\RestContext;
 use Behatch\HttpCall\Request;
 use Behatch\Json\Json;
 use Behatch\Json\JsonInspector;
+use Doctrine\ORM\EntityManagerInterface;
 
 class FeatureContext extends RestContext
 {
-    /**
-     * @var JsonInspector
-     */
     private $inspector;
+    private $em;
 
-    public function __construct(Request $request)
+    public function __construct(Request $request, EntityManagerInterface $em)
     {
         parent::__construct($request);
         $this->inspector = new JsonInspector('javascript');
+        $this->em = $em;
     }
 
     /**
@@ -45,5 +46,14 @@ class FeatureContext extends RestContext
     {
         $value = $this->inspector->evaluate(new Json($this->request->getContent()), $node);
         $this->assertEquals($length, strlen($value));
+    }
+
+    /**
+     * @Given user with this :email has :role
+     */
+    public function userWithGivenEmailHasRole($email, $role)
+    {
+        $user = $this->em->getRepository(User::class)->findOneBy(['email' => $email]);
+        $this->assertTrue(in_array($role, $user->getRoles()));
     }
 }
