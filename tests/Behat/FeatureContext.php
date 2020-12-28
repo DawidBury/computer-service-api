@@ -63,14 +63,14 @@ class FeatureContext extends RestContext
     }
 
     /**
-     * @BeforeScenario @login
+     * @BeforeScenario @loginAsUser
      */
-    public function login(): void
+    public function loginAsUser(): void
     {
         $user = new User(
-            'test@test.pl'
+            'example@user.pl'
         );
-        $user->setPassword('Testowe123!');
+        $user->setPassword('qwerty123!');
         $this->em->persist($user);
         $this->em->flush();
 

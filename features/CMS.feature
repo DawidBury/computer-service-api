@@ -1,5 +1,5 @@
 Feature:
-    @login
+    @loginAsUser
     Scenario: Try to create CMS with good credentials
         When I add "Content-Type" header equal to "application/json"
         And I send a "POST" request to "/api/cms" with body:
