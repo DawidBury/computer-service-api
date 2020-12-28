@@ -10,7 +10,7 @@ Feature:
         """
         {
             "email": "",
-            "password": "Testowe123!"
+            "password": "qwerty123!"
         }
         """
         Then the response status code should be 400
@@ -22,16 +22,16 @@ Feature:
         And I send a "POST" request to "/api/users/register" with body:
         """
         {
-            "email": "dawidbury1998@gmail.com",
-            "password": "Testowe123!"
+            "email": "example@user123.pl",
+            "password": "qwerty123!"
         }
         """
         Then the response status code should be 201
         And the response should be in JSON
         And the JSON node "token" should not be null
 
-    Scenario: Try to login with bad credentials
-        Given user with this "dawidbury1998@gmail.com" has "ROLE_USER"
+    Scenario: Try to get users from system as common user
+        Given user with this "example@user123.pl" has "ROLE_USER"
         When I add "Content-Type" header equal to "application/json"
         And I send a "GET" request to "/api/users"
         Then the response status code should be 401
