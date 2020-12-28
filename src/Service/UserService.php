@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Constants\RoleConstants;
+use App\Constants\UserConstants;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -42,15 +44,15 @@ class UserService
 
     public function createBasicUsers(): void
     {
-        $user = new User('example@admin.pl');
+        $user = new User(UserConstants::EMAIL_ADMIN);
         $user->setPassword($this->encoder->encodePassword($user, 'qwerty123!'));
-        $user->setRoles(['ROLE_ADMIN']);
+        $user->setRoles([RoleConstants::ADMIN]);
         $this->em->persist($user);
         $this->em->flush();
 
-        $user = new User('example@user.pl');
+        $user = new User(UserConstants::EMAIL_USER);
         $user->setPassword($this->encoder->encodePassword($user, 'qwerty123!'));
-        $user->setRoles(['ROLE_USER']);
+        $user->setRoles([RoleConstants::USER]);
         $this->em->persist($user);
         $this->em->flush();
     }

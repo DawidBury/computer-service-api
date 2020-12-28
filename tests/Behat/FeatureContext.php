@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Behat;
 
+use App\Constants\UserConstants;
 use App\Entity\User;
 use Behatch\Context\RestContext;
 use Behatch\HttpCall\Request;
@@ -67,12 +68,8 @@ class FeatureContext extends RestContext
      */
     public function loginAsUser(): void
     {
-        $user = new User(
-            'example@user.pl'
-        );
-        $user->setPassword('qwerty123!');
-        $this->em->persist($user);
-        $this->em->flush();
+        $userRepository = $this->em->getRepository(User::class);
+        $user = $userRepository->findOneBy(['email' => UserConstants::EMAIL_USER]);
 
         $token = $this->jwtManager->create($user);
         $this->iAddHeaderEqualTo('Authorization', "Bearer $token");
