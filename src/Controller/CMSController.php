@@ -7,9 +7,13 @@ namespace App\Controller;
 use App\Constraints\CreateCMSConstraints;
 use App\Constraints\UpdateCMSConstraints;
 use App\Service\CMSService;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * @IsGranted("ROLE_ADMIN")
+ */
 class CMSController extends AbstractBaseController
 {
     public function create(Request $request, CMSService $cmsService): JsonResponse
