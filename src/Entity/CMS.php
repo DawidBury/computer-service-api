@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use App\Repository\CMSRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=CMSRepository::class)
@@ -16,16 +17,22 @@ class CMS
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @Groups({"cms"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=64)
+     *
+     * @Groups({"cms"})
      */
     private $attribute;
 
     /**
      * @ORM\Column(type="string", length=64)
+     *
+     * @Groups({"cms"})
      */
     private $value;
 
