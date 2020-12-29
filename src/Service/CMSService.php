@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\CMS;
+use App\Exception\NotFoundException;
+use App\Exception\ValidationException;
 use App\Repository\CMSRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -35,5 +37,22 @@ class CMSService
     public function getAllCMS(): array
     {
         return $this->cmsRepository->findAll();
+    }
+
+    public function updateCMS(int $id, string $attribute, string $value, bool $active): CMS
+    {
+        $cmsContent = $this->cmsRepository->find($id);
+
+        if (!$cmsContent) {
+            throw new NotFoundException($id);
+        }
+
+        $cmsContent->setAttribute($attribute);
+        $cmsContent->setValue($value);
+        $cmsContent->setActive($active);
+
+        $this->em->flush();
+
+        return $cmsContent;
     }
 }

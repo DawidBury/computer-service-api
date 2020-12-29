@@ -19,3 +19,8 @@ api.cms.get:
     path: /cms
     controller: App\Controller\CMSController:list
     methods: GET
+
+api.cms.update:
+    path: /cms
+    controller: App\Controller\CMSController:update
+    methods: PUT

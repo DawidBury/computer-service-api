@@ -21,3 +21,21 @@ Feature:
         And I send a "GET" request to "/api/cms"
         Then the response status code should be 200
         And the response should be in JSON
+
+    @loginAsUser
+    Scenario: Try to create CMS with good credentials
+        When I add "Content-Type" header equal to "application/json"
+        And I send a "PUT" request to "/api/cms" with body:
+        """
+        {
+            "id": 1,
+            "attribute": "opening-hours",
+            "value": "8:00",
+            "active": true
+        }
+        """
+        Then the response status code should be 200
+        And the response should be in JSON
+        And the JSON node attribute value should be "opening-hours"
+        And the JSON node value value should be "8:00"
+        And the JSON node active value should be true
