@@ -36,10 +36,18 @@ class CMS
      */
     private $value;
 
+    /**
+     * @ORM\Column(type="boolean")
+     *
+     * @Groups({"cms"})
+     */
+    private $active;
+
     public function __construct(string $attribute, string $value)
     {
         $this->attribute = $attribute;
         $this->value = $value;
+        $this->active = false;
     }
 
     public function getId(): ?int
@@ -66,6 +74,17 @@ class CMS
     public function setValue(string $value): self
     {
         $this->value = $value;
+        return $this;
+    }
+
+    public function isActive(): bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
         return $this;
     }
 }

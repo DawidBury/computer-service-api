@@ -13,3 +13,4 @@ Feature:
         And the response should be in JSON
         And the JSON node attribute should not be null
         And the JSON node value should not be null
+        And the JSON node active value should be false

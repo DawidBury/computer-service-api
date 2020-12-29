@@ -55,6 +55,20 @@ class FeatureContext extends RestContext
     }
 
     /**
+     * @Then the JSON node :node value should be :value
+     */
+    public function theJsonNodeValueShouldBeEqualsTo(string $node, string $expectedValue)
+    {
+        $jsonValue = $this->inspector->evaluate(new Json($this->request->getContent()), $node);
+
+        if (is_bool($jsonValue)) {
+            $jsonValue = $jsonValue ? 'true' : 'false';
+        }
+
+        $this->assertEquals($expectedValue, $jsonValue);
+    }
+
+    /**
      * @Given user with this :email has :role
      */
     public function userWithGivenEmailHasRole($email, $role)
