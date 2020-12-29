@@ -26,4 +26,15 @@ class CMSController extends AbstractBaseController
 
         return new JsonResponse($serializedCMS, JsonResponse::HTTP_CREATED);
     }
+
+    public function list(CMSService $cmsService): JsonResponse
+    {
+        $cmsContent = $cmsService->getAllCMS();
+
+        $serializedCMS = $this->_serializer->normalize($cmsContent, 'array', [
+            'groups' => 'cms'
+        ]);
+
+        return new JsonResponse($serializedCMS, JsonResponse::HTTP_OK);
+    }
 }

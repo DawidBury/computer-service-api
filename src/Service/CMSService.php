@@ -31,4 +31,9 @@ class CMSService
 
         return $cms;
     }
+
+    public function getAllCMS(): array
+    {
+        return $this->cmsRepository->findAll();
+    }
 }
