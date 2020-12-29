@@ -82,8 +82,21 @@ class FeatureContext extends RestContext
      */
     public function loginAsUser(): void
     {
+        $this->login(UserConstants::EMAIL_USER);
+    }
+
+    /**
+     * @BeforeScenario @loginAsAdmin
+     */
+    public function loginAsAdmin(): void
+    {
+        $this->login(UserConstants::EMAIL_ADMIN);
+    }
+
+    public function login(string $email): void
+    {
         $userRepository = $this->em->getRepository(User::class);
-        $user = $userRepository->findOneBy(['email' => UserConstants::EMAIL_USER]);
+        $user = $userRepository->findOneBy(['email' => $email]);
 
         $token = $this->jwtManager->create($user);
         $this->iAddHeaderEqualTo('Authorization', "Bearer $token");
