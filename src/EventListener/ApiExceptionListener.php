@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\EventListener;
 
@@ -11,19 +13,17 @@ class ApiExceptionListener
     public function onKernelException(ExceptionEvent $event): void
     {
         $exception = $event->getThrowable();
-
         if (!$exception instanceof ApiExceptionInterface) {
             return;
         }
 
-        $event->setResponse(
-            $this->createApiResponse($exception)
-        );
+        $event->setResponse($this->createApiResponse($exception));
     }
 
     private function createApiResponse($exception)
     {
-        $parsedString = str_replace('"', "", $exception->getMessage());
+        $parsedString = str_replace('"', '', $exception->getMessage());
+
         return new ApiResponse($parsedString, null, [], $exception->getCode());
     }
 }

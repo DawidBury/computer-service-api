@@ -1,10 +1,11 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Constraints\CustomConstraints;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Constraint;
-use Symfony\Component\Validator\Constraints\Type;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
@@ -35,13 +36,11 @@ class UniqueFieldValidator extends ConstraintValidator
 
         $entity = $constraint->entity;
         $field = $constraint->field;
-
         if (!$entity || !$field) {
             throw new \Exception('Incorrect entity or field');
         }
 
         $result = $this->em->getRepository($entity)->findOneBy([$field => $value]);
-
         if ($result) {
             $this->context->buildViolation($constraint->message)->addViolation();
         }

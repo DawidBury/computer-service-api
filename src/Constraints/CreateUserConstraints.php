@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Constraints;
 
@@ -20,14 +22,14 @@ class CreateUserConstraints
                     new NotBlank(),
                     new Type('string'),
                     new Email(),
-                    new UniqueField(['entity' => User::class, 'field' => 'email'])
+                    new UniqueField(['entity' => User::class, 'field' => 'email']),
                 ],
                 'password' => [
                     new NotBlank(),
                     new Type('string'),
                     //@TODO Regex validation
-                ]
-            ]
+                ],
+            ],
         ]);
     }
 }

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Constraints\CustomConstraints;
 
@@ -9,7 +11,6 @@ class UniqueField extends Constraint
     public $message = 'This field must be unique';
     public $entity;
     public $field;
-
     public function validatedBy()
     {
         return UniqueFieldValidator::class;

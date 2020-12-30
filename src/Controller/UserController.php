@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Controller;
 
@@ -18,7 +20,6 @@ class UserController extends AbstractBaseController
         );
 
         $user = $userService->createUser($data['email'], $data['password']);
-
         $serializedUser = $this->_serializer->normalize($user, 'array', [
             'groups' => 'user:post'
         ]);
@@ -29,7 +30,6 @@ class UserController extends AbstractBaseController
     public function getUsers(UserService $userService)
     {
         $this->denyAccessUnlessGranted(RoleConstants::ADMIN);
-
         $users = $this->_serializer->normalize($userService->getUsers(), 'array', [
             'groups' => 'user:get'
         ]);

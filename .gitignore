@@ -9,6 +9,8 @@
 /vendor/
 .idea
 migrations/
+/tools
+.php_cs.cache
 ###< symfony/framework-bundle ###
 
 ###> lexik/jwt-authentication-bundle ###
