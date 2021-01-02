@@ -7,6 +7,7 @@ namespace App\Service;
 use App\Constants\RoleConstants;
 use App\Constants\UserConstants;
 use App\Entity\User;
+use App\Exception\NotFoundException;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -54,6 +55,19 @@ class UserService
         $user->setPassword($this->encoder->encodePassword($user, 'qwerty123!'));
         $user->setRoles([RoleConstants::USER]);
         $this->em->persist($user);
+        $this->em->flush();
+    }
+
+    public function confirmUser(string $confirmationToken): void
+    {
+        $user = $this->userRepository->findOneBy(['confirmationToken' => $confirmationToken]);
+
+        if (!$user) {
+            throw new NotFoundException($confirmationToken);
+        }
+
+        $user->setEnabled(true);
+        $user->setConfirmationToken(null);
         $this->em->flush();
     }
 }

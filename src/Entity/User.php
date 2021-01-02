@@ -55,6 +55,16 @@ class User implements UserInterface
      */
     private $customer;
 
+    /**
+     * @ORM\Column(type="string", length=40, nullable=true)
+     */
+    private $confirmationToken;
+
+    /**
+     * @ORM\Column(type="boolean", options={"default" : false})
+     */
+    private $enabled = false;
+
     public function __construct(string $email)
     {
         $this->email = $email;
@@ -116,5 +126,29 @@ class User implements UserInterface
 
     public function eraseCredentials()
     {
+    }
+
+    public function getConfirmationToken(): ?string
+    {
+        return $this->confirmationToken;
+    }
+
+    public function setConfirmationToken(?string $confirmationToken): self
+    {
+        $this->confirmationToken = $confirmationToken;
+
+        return $this;
+    }
+
+    public function isEnabled(): bool
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled(bool $enabled): self
+    {
+        $this->enabled = $enabled;
+
+        return $this;
     }
 }

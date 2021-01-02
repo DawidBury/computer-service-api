@@ -34,3 +34,8 @@ services:
         class: App\EventListener\ApiExceptionListener
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+
+    App\EventListener\UserRegisterListener:
+        autowire: true
+        tags:
+            - { name: doctrine.event_listener, event: postPersist, method: postPersist }

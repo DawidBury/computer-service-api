@@ -36,4 +36,11 @@ class UserController extends AbstractBaseController
 
         return new JsonResponse($users, JsonResponse::HTTP_OK);
     }
+
+    public function confirm(string $token, UserService $userService): JsonResponse
+    {
+        $userService->confirmUser($token);
+
+        return new JsonResponse(null, JsonResponse::HTTP_NO_CONTENT);
+    }
 }
