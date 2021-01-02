@@ -61,7 +61,7 @@ class User implements UserInterface
     private $confirmationToken;
 
     /**
-     * @ORM\Column(type="boolean", options={"default" : false})
+     * @ORM\Column(type="boolean", options={"default" : false}, nullable=true)
      */
     private $enabled = false;
 
@@ -140,7 +140,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function isEnabled(): bool
+    public function isEnabled(): ?bool
     {
         return $this->enabled;
     }
