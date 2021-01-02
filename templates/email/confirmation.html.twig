@@ -1,0 +1,7 @@
+<h3>
+    Hej, {{ user.getNick() }}, proszę potwierdź Twój adres e-mail.
+</h3>
+
+<p>
+    Potwierdź swój email klikając <a href="{{ url('api.users.confirm', {'token': user.getConfirmationToken()}) }}">ten</a> link
+</p>
