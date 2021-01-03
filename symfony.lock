@@ -123,6 +123,9 @@
             "./tests/Behat/DemoContext.php"
         ]
     },
+    "fzaninotto/faker": {
+        "version": "v1.9.2"
+    },
     "justinrainbow/json-schema": {
         "version": "5.2.10"
     },
