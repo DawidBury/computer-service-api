@@ -26,4 +26,15 @@ class TaskController extends AbstractBaseController
 
         return new JsonResponse($serializedTask, JsonResponse::HTTP_CREATED);
     }
+
+    public function list(TaskService $taskService): JsonResponse
+    {
+        $tasks = $taskService->getAllTasks();
+
+        $serializedTasks = $this->_serializer->normalize($tasks, 'array', [
+            'groups' => 'task',
+        ]);
+
+        return new JsonResponse($serializedTasks, JsonResponse::HTTP_OK);
+    }
 }

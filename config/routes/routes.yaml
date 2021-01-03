@@ -46,3 +46,8 @@ api.tasks.create:
     path: /tasks
     controller: App\Controller\TaskController:create
     methods: POST
+
+api.tasks.list:
+    path: /tasks
+    controller: App\Controller\TaskController:list
+    methods: GET

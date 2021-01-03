@@ -25,7 +25,7 @@ class TaskService
     {
         $taskType = $this->em->getRepository(TaskType::class)->find($taskTypeId);
 
-        if ($taskType === null) {
+        if (null === $taskType) {
             throw new NotFoundException($taskTypeId);
         }
 
@@ -38,5 +38,10 @@ class TaskService
         $this->em->flush();
 
         return $task;
+    }
+
+    public function getAllTasks(): array
+    {
+        return $this->taskRepository->findAll();
     }
 }
