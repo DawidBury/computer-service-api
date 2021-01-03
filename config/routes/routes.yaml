@@ -40,3 +40,9 @@ api.task-type.list:
     path: /task-types
     controller: App\Controller\TaskTypeController:list
     methods: GET
+
+#TASKS
+api.tasks.create:
+    path: /tasks
+    controller: App\Controller\TaskController:create
+    methods: POST
