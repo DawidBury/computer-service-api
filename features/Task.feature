@@ -11,3 +11,6 @@ Feature:
         """
         Then the response status code should be 201
         And the response should be in JSON
+        And dump the response
+        And the JSON node priority value should be 1
+        And the JSON node taskType should not be null
