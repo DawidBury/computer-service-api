@@ -29,3 +29,9 @@ api.cms.update:
     path: /cms
     controller: App\Controller\CMSController:update
     methods: PUT
+
+#TASK-TYPE
+api.task-type.create:
+    path: /task-types
+    controller: App\Controller\TaskTypeController:create
+    methods: POST
