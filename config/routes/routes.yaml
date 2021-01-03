@@ -51,3 +51,9 @@ api.tasks.list:
     path: /tasks
     controller: App\Controller\TaskController:list
     methods: GET
+
+#EMPLOYEE
+api.employee.create:
+    path: /employees
+    controller: App\Controller\EmployeeController:create
+    methods: POST
