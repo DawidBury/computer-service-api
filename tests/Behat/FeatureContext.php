@@ -78,6 +78,14 @@ class FeatureContext extends RestContext
     }
 
     /**
+     * @When the JSON node :node cannot be null
+     */
+    public function theNodeCannotBeNull($node)
+    {
+        $this->inspector->evaluate(new Json($this->request->getContent()), $node);
+    }
+
+    /**
      * @BeforeScenario @loginAsUser
      */
     public function loginAsUser(): void
