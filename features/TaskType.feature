@@ -20,7 +20,6 @@ Feature:
         And I send a "GET" request to "/api/task-types"
         Then the response status code should be 200
         And the response should be in JSON
-        And dump the response
 
     @loginAsUser
     Scenario: Try to create TaskType with good credentials as User
@@ -33,3 +32,5 @@ Feature:
         }
         """
         Then the response status code should be 403
+        And the response should be in JSON
+        And the JSON node message value should be "Access denied"
