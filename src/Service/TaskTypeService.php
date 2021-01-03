@@ -19,7 +19,7 @@ class TaskTypeService
         $this->em = $em;
     }
 
-    public function createTaskType(string $name, int $cost)
+    public function createTaskType(string $name, int $cost): TaskType
     {
         $taskType = new TaskType(
             $name,
@@ -30,5 +30,10 @@ class TaskTypeService
         $this->em->flush();
 
         return $taskType;
+    }
+
+    public function getAllTaskTypes(): array
+    {
+        return $this->taskTypeRepository->findAll();
     }
 }
