@@ -20,7 +20,7 @@ class TaskType
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      *
-     * @Groups({"task-type"})
+     * @Groups({"task-type", "task"})
      */
     private $id;
 

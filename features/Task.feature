@@ -1,6 +1,6 @@
 Feature:
     @loginAsAdmin
-    Scenario: Try to create TaskType with good credentials as Admin
+    Scenario: Try to create Task with good credentials as Admin
         When I add "Content-Type" header equal to "application/json"
         And I send a "POST" request to "/api/tasks" with body:
         """
@@ -11,6 +11,5 @@ Feature:
         """
         Then the response status code should be 201
         And the response should be in JSON
-        And dump the response
         And the JSON node priority value should be 1
         And the JSON node taskType should not be null
