@@ -7,7 +7,6 @@ namespace App\Service;
 use App\Constants\RoleConstants;
 use App\Entity\Employee;
 use App\Entity\User;
-use App\Exception\NotFoundException;
 use App\Repository\EmployeeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -47,5 +46,10 @@ class EmployeeService
         $this->em->flush();
 
         return $employee;
+    }
+
+    public function getAllEmployees(): array
+    {
+        return $this->employeeRepository->findAll();
     }
 }

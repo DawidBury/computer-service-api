@@ -35,4 +35,18 @@ class EmployeeController extends AbstractBaseController
 
         return new JsonResponse($serializedEmployee, JsonResponse::HTTP_CREATED);
     }
+
+    /**
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function list(EmployeeService $employeeService): JsonResponse
+    {
+        $employees = $employeeService->getAllEmployees();
+
+        $serializedEmployees = $this->_serializer->normalize($employees, 'array', [
+            'groups' => 'employee',
+        ]);
+
+        return new JsonResponse($serializedEmployees, JsonResponse::HTTP_OK);
+    }
 }

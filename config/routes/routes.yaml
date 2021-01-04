@@ -57,3 +57,8 @@ api.employee.create:
     path: /employees
     controller: App\Controller\EmployeeController:create
     methods: POST
+
+api.employee.list:
+    path: /employees
+    controller: App\Controller\EmployeeController:list
+    methods: GET
