@@ -31,6 +31,7 @@ class CreateCustomerConstraints
                     new Length(['max' => 64]),
                 ],
                 'birthday' => [
+                    new NotBlank(['allowNull' => true]),
                     new Type('string'),
                 ],
                 'gender' => [

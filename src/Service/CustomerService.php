@@ -32,7 +32,7 @@ class CustomerService
         ?bool $subscribedToNewsletter,
         ?string $nip
     ): Customer {
-        $birthday = \DateTime::createFromFormat('d-m-Y H:i', $birthday);
+        $birthday = \DateTime::createFromFormat('d-m-Y H:i', $birthday ?? '');
 
         $user = $this->em->getRepository(User::class)->find($userId);
 
@@ -44,7 +44,7 @@ class CustomerService
             $user,
             $firstName,
             $lastName,
-            $birthday,
+            $birthday ? $birthday : null,
             $gender,
             $phone,
             $address,
