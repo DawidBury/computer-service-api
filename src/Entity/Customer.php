@@ -7,6 +7,7 @@ namespace App\Entity;
 use App\Repository\CustomerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=CustomerRepository::class)
@@ -17,46 +18,64 @@ class Customer
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @Groups({"customer"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=64)
+     *
+     * @Groups({"customer"})
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=64)
+     *
+     * @Groups({"customer"})
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     *
+     * @Groups({"customer"})
      */
     private $birthday;
 
     /**
      * @ORM\Column(type="string", nullable=true)
+     *
+     * @Groups({"customer"})
      */
     private $gender;
 
     /**
      * @ORM\Column(type="string", length=16, nullable=true)
+     *
+     * @Groups({"customer"})
      */
     private $phone;
 
     /**
      * @ORM\Column(type="string", length=64, nullable=true)
+     *
+     * @Groups({"customer"})
      */
     private $address;
 
     /**
      * @ORM\Column(type="boolean", options={"default" : false})
+     *
+     * @Groups({"customer"})
      */
     private $subscribedToNewsletter;
 
     /**
      * @ORM\Column(type="string", length=16, nullable=true)
+     *
+     * @Groups({"customer"})
      */
     private $nip;
 
@@ -68,6 +87,8 @@ class Customer
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="customer")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *
+     * @Groups({"customer"})
      */
     private $user;
 
@@ -79,7 +100,7 @@ class Customer
         ?string $gender,
         ?string $phone,
         ?string $address,
-        ?string $subscribedToNewsletter,
+        ?bool $subscribedToNewsletter,
         ?string $nip
     ) {
         $this->user = $user;
