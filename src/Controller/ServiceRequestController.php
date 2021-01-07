@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Constants\RoleConstants;
 use App\Constraints\CreateServiceRequestConstraints;
 use App\Service\ServiceRequestService;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -29,5 +30,17 @@ class ServiceRequestController extends AbstractBaseController
         ]);
 
         return new JsonResponse($serializedServiceRequest, JsonResponse::HTTP_CREATED);
+    }
+
+    public function list(ServiceRequestService $serviceRequestService): JsonResponse
+    {
+        $this->denyAccessUnlessGranted(RoleConstants::EMPLOYEE);
+        $serviceRequests = $serviceRequestService->getAllServiceRequests();
+
+        $serializedRequests = $this->_serializer->normalize($serviceRequests, 'array', [
+            'groups' => 'service-request:list',
+        ]);
+
+        return new JsonResponse($serializedRequests, JsonResponse::HTTP_OK);
     }
 }

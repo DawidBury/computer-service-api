@@ -28,3 +28,18 @@ Feature:
         Then the response status code should be 400
         And the response should be in JSON
         And the JSON node message cannot be null
+
+    @loginAsUser
+    Scenario: Try to get list with as User
+        When I add "Content-Type" header equal to "application/json"
+        And I send a "GET" request to "/api/service-requests"
+        Then the response status code should be 403
+        And the response should be in JSON
+        And the JSON node message cannot be null
+
+    @loginAsAdmin
+    Scenario: Try to get list with as User
+        When I add "Content-Type" header equal to "application/json"
+        And I send a "GET" request to "/api/service-requests"
+        Then the response status code should be 200
+        And the response should be in JSON

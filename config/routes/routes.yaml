@@ -74,3 +74,8 @@ api.service-requests.create:
     path: /service-requests
     controller: App\Controller\ServiceRequestController:create
     methods: POST
+
+api.service-requests.list:
+    path: /service-requests
+    controller: App\Controller\ServiceRequestController:list
+    methods: GET

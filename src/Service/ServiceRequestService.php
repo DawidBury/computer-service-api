@@ -21,7 +21,7 @@ class ServiceRequestService
         $this->em = $em;
     }
 
-    public function createServiceRequest(string $subject, string $description, int $customerId)
+    public function createServiceRequest(string $subject, string $description, int $customerId): ServiceRequest
     {
         $customer = $this->em->getRepository(Customer::class)->find($customerId);
 
@@ -39,5 +39,10 @@ class ServiceRequestService
         $this->em->flush();
 
         return $serviceRequest;
+    }
+
+    public function getAllServiceRequests(): array
+    {
+        return $this->serviceRequestRepository->findAll();
     }
 }
