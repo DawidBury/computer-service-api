@@ -68,3 +68,9 @@ api.customer.create:
     path: /customers
     controller: App\Controller\CustomerController:create
     methods: POST
+
+#SERVICE-REQUEST
+api.service-requests.create:
+    path: /service-requests
+    controller: App\Controller\ServiceRequestController:create
+    methods: POST

@@ -96,12 +96,12 @@ class Customer
         User $user,
         string $firstName,
         string $lastName,
-        ?\DateTime $birthday,
-        ?string $gender,
-        ?string $phone,
-        ?string $address,
-        ?bool $subscribedToNewsletter,
-        ?string $nip
+        ?\DateTime $birthday = null,
+        ?string $gender = null,
+        ?string $phone = null,
+        ?string $address = null,
+        ?bool $subscribedToNewsletter = false,
+        ?string $nip = null
     ) {
         $this->user = $user;
         $this->firstName = $firstName;

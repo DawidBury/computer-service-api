@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\DataFixtures;
 
+use App\Entity\Customer;
 use App\Entity\User;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -34,6 +35,14 @@ class UserFixtures extends AppFixtures
             $entity->setEnabled(true);
             $entity->setPassword($this->passwordEncoder->encodePassword($entity, 'Testowe123!'));
             $manager->persist($entity);
+
+            $customer = new Customer(
+                $entity,
+                $this->faker->firstName,
+                $this->faker->lastName,
+                $this->faker->dateTime()
+            );
+            $manager->persist($customer);
         }
 
         $manager->flush();
