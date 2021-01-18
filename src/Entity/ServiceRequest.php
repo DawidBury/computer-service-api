@@ -107,17 +107,17 @@ class ServiceRequest
         return $this->proposedDeliveryTime;
     }
 
-    public function getTask(): Task
+    public function getTask(): ?Task
     {
         return $this->task;
     }
 
-    public function getCustomer(): Customer
+    public function getCustomer(): ?Customer
     {
         return $this->customer;
     }
 
-    public function getEmployee(): Employee
+    public function getEmployee(): ?Employee
     {
         return $this->employee;
     }

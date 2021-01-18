@@ -114,6 +114,11 @@ class Customer
         $this->nip = $nip;
     }
 
+    public function __toString()
+    {
+        return (string) $this->getFirstName().' '.$this->getLastName();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

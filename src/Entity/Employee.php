@@ -66,6 +66,11 @@ class Employee
         $this->serviceRequests = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return (string) $this->getFirstName().' '.$this->getLastName();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

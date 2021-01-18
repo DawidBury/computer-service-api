@@ -1,0 +1,13 @@
+easy_admin:
+    entities:
+        User:
+            class: App\Entity\User
+            list:
+                fields:
+                    - { property: 'email', type: 'email' }
+                    - { property: 'enabled', type: 'boolean' }
+                sort: ['email', 'ASC']
+            form:
+                fields:
+                    - email
+                    - enabled

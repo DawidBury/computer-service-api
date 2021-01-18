@@ -151,4 +151,14 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getEmployee()
+    {
+        return $this->employee;
+    }
+
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
 }
