@@ -17,6 +17,12 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        main:
+            provider: app_user_provider
+            anonymous: lazy
+            guard:
+                authenticators:
+                    - App\Security\AppAuthenticator
         login:
             pattern:  ^/api/users/login
             stateless: true
@@ -39,3 +45,4 @@ security:
         - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/users/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/admin, roles: ROLE_EMPLOYEE }
