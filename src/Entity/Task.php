@@ -43,7 +43,7 @@ class Task
      */
     private $serviceRequest;
 
-    public function __construct(int $priority, TaskType $taskType)
+    public function __construct(?int $priority = null, ?TaskType $taskType = null)
     {
         $this->priority = $priority;
         $this->taskType = $taskType;
@@ -59,13 +59,30 @@ class Task
         return $this->priority;
     }
 
-    public function getTaskType(): TaskType
+    public function getTaskType(): ?TaskType
     {
         return $this->taskType;
     }
 
-    public function getServiceRequest(): ServiceRequest
+    public function getServiceRequest(): ?ServiceRequest
     {
         return $this->serviceRequest;
+    }
+
+    public function setServiceRequest(?ServiceRequest $serviceRequest): ServiceRequest
+    {
+        return $this->serviceRequest = $serviceRequest;
+    }
+
+    public function setPriority(?int $priority): Task
+    {
+        $this->priority = $priority;
+        return $this;
+    }
+
+    public function setTaskType(?TaskType $taskType): Task
+    {
+        $this->taskType = $taskType;
+        return $this;
     }
 }

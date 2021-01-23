@@ -19,6 +19,12 @@ class ServiceRequestRepository extends ServiceEntityRepository
         parent::__construct($registry, ServiceRequest::class);
     }
 
+    public static function available(ServiceRequestRepository $repository)
+    {
+        return $repository->createQueryBuilder('s')
+            ->where('s.subject is NULL');
+    }
+
     // /**
     //  * @return ServiceRequest[] Returns an array of ServiceRequest objects
     //  */

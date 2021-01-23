@@ -1,13 +1,67 @@
 easy_admin:
+    site_name: IT's Comp
     entities:
         User:
             class: App\Entity\User
             list:
                 fields:
-                    - { property: 'email', type: 'email' }
-                    - { property: 'enabled', type: 'boolean' }
-                sort: ['email', 'ASC']
+                    - { property: email, type: email }
+                    - { property: enabled, type: toggle }
+                sort: [email, ASC]
+                filters: [email, enabled]
             form:
                 fields:
                     - email
                     - enabled
+
+        Employee:
+            class: App\Entity\Employee
+            list:
+                fields:
+                    - { property: lastName, type: string }
+                    - { property: firstName, type: string }
+                    - { property: businessNumber, type: string }
+                    - { property: id, label: ID Użytkownika, type_options: App\Entity\User }
+                sort: [lastName, ASC]
+            form:
+                fields:
+                    - firstName
+                    - lastName
+                    - businessNumber
+                    - user
+
+
+        Task:
+            class: App\Entity\Task
+            list:
+                fields:
+                    - { property: id, type: integer }
+                    - { property: priority, type: integer }
+                    - { property: taskType, label: Typ zadania }
+                    - { property: serviceRequest, label: Zgłoszenie, type_options: App\Entity\ServiceRequest }
+                sort: [id, ASC]
+            form:
+                fields:
+                    - priority
+                    - taskType
+                    - property: serviceRequest
+                      type_options:
+                          query_builder: App\Repository\ServiceRequestRepository::available
+
+
+        TaskType:
+            class: App\Entity\TaskType
+            list:
+                fields:
+                    - { property: id, type: integer }
+                sort: [id, ASC]
+
+
+        ServiceRequest:
+            class: App\Entity\ServiceRequest
+            list:
+                fields:
+                    - { property: id, type: integer }
+                sort: [id, ASC]
+
+
