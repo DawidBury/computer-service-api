@@ -30,6 +30,11 @@ class Task
     private $priority;
 
     /**
+     * @ORM\Column(type="boolean", options={"default": false})
+     */
+    private $inProgress = false;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\TaskType", inversedBy="tasks")
      * @ORM\JoinColumn(name="task_type_id", referencedColumnName="id")
      *
@@ -47,6 +52,11 @@ class Task
     {
         $this->priority = $priority;
         $this->taskType = $taskType;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->getId();
     }
 
     public function getId(): ?int
@@ -77,12 +87,26 @@ class Task
     public function setPriority(?int $priority): Task
     {
         $this->priority = $priority;
+
         return $this;
     }
 
     public function setTaskType(?TaskType $taskType): Task
     {
         $this->taskType = $taskType;
+
+        return $this;
+    }
+
+    public function getInProgress(): bool
+    {
+        return $this->inProgress;
+    }
+
+    public function setInProgress($inProgress): Task
+    {
+        $this->inProgress = $inProgress;
+
         return $this;
     }
 }

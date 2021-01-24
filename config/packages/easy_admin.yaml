@@ -7,9 +7,11 @@ easy_admin:
         menu:
             - { entity: User, icon: user }
             - { entity: Employee, icon: user-tie }
+            - { entity: Customer, icon: user-friends }
             - { entity: Task, icon: tasks }
             - { entity: TaskType, icon: toolbox }
             - { entity: ServiceRequest, icon: tools }
+            - { entity: CMS, icon: clipboard }
     entities:
         User:
             class: App\Entity\User
@@ -41,12 +43,24 @@ easy_admin:
                     - user
 
 
+        Customer:
+            class: App\Entity\Customer
+            list:
+                fields:
+                    - lastName
+                    - firstName
+                    - phone
+                    - { property: id, label: ID Użytkownika, type_options: App\Entity\User }
+                sort: [lastName, ASC]
+
+
         Task:
             class: App\Entity\Task
             list:
                 fields:
                     - { property: id, type: integer }
                     - { property: priority, type: integer }
+                    - { property: inProgress, type: toggle }
                     - { property: taskType, label: Typ zadania }
                     - { property: serviceRequest, label: Zgłoszenie, type_options: App\Entity\ServiceRequest }
                 sort: [id, ASC]
@@ -54,6 +68,7 @@ easy_admin:
                 fields:
                     - priority
                     - taskType
+                    - inProgress
                     - property: serviceRequest
                       type_options:
                           query_builder: App\Repository\ServiceRequestRepository::available
@@ -64,7 +79,13 @@ easy_admin:
             list:
                 fields:
                     - { property: id, type: integer }
+                    - name
+                    - cost
                 sort: [id, ASC]
+            form:
+                fields:
+                    - name
+                    - cost
 
 
         ServiceRequest:
@@ -72,6 +93,33 @@ easy_admin:
             list:
                 fields:
                     - { property: id, type: integer }
+                    - subject
+                    - proposedDeliveryTime
+                    - task
+                    - employee
+                    - customer
                 sort: [id, ASC]
+                filters: [subject, task, employee]
+            form:
+                fields:
+                    - subject
+                    - proposedDeliveryTime
+                    - task
+                    - employee
 
+
+        CMS:
+            class: App\Entity\CMS
+            list:
+                fields:
+                    - { property: id, type: integer }
+                    - attribute
+                    - value
+                    - active
+                sort: [id, ASC]
+            form:
+                fields:
+                    - attribute
+                    - value
+                    - active
 

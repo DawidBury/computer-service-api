@@ -43,7 +43,7 @@ class CMS
      */
     private $active;
 
-    public function __construct(string $attribute, string $value)
+    public function __construct(?string $attribute = null, ?string $value = null)
     {
         $this->attribute = $attribute;
         $this->value = $value;

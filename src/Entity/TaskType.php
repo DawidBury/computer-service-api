@@ -43,7 +43,7 @@ class TaskType
      */
     private $tasks;
 
-    public function __construct(string $name, int $cost)
+    public function __construct(?string $name = null, ?int $cost = null)
     {
         $this->name = $name;
         $this->cost = $cost;
