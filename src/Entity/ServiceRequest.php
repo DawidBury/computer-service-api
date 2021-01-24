@@ -79,7 +79,7 @@ class ServiceRequest
 
     public function __toString()
     {
-        return (string) $this->getId();
+        return (string) $this->getId().' | '.$this->getSubject();
     }
 
     public function getId(): ?int

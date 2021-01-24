@@ -1,5 +1,15 @@
 easy_admin:
     site_name: IT's Comp
+    design:
+        assets:
+            css:
+                - 'admin.css'
+        menu:
+            - { entity: User, icon: user }
+            - { entity: Employee, icon: user-tie }
+            - { entity: Task, icon: tasks }
+            - { entity: TaskType, icon: toolbox }
+            - { entity: ServiceRequest, icon: tools }
     entities:
         User:
             class: App\Entity\User

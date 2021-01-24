@@ -1,0 +1,23 @@
+:root {
+    --color-primary: rgb(221, 164, 59);
+}
+
+.main-header #header-logo a {
+    color: #333;
+}
+
+.navbar-custom-menu .user {
+    color: #333;
+}
+
+td > a {
+    color: var(--color-primary);
+}
+
+.action-edit {
+    color: #5c70d6;
+}
+
+.content {
+    overflow: auto;
+}
