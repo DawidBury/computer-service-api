@@ -19,7 +19,7 @@ class UserController extends AbstractBaseController
             CreateUserConstraints::get()
         );
 
-        $user = $userService->createUser($data['email'], $data['password']);
+        $user = $userService->createUser($data['email'], $data['password'], $data['phone'], $data['firstName'], $data['lastName']);
         $serializedUser = $this->_serializer->normalize($user, 'array', [
             'groups' => 'user:post'
         ]);

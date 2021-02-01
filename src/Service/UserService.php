@@ -6,6 +6,7 @@ namespace App\Service;
 
 use App\Constants\RoleConstants;
 use App\Constants\UserConstants;
+use App\Entity\Customer;
 use App\Entity\User;
 use App\Exception\NotFoundException;
 use App\Repository\UserRepository;
@@ -27,12 +28,24 @@ class UserService
         $this->encoder = $encoder;
     }
 
-    public function createUser(string $email, string $password): User
+    public function createUser(string $email, string $password, string $phone, string $fistName, string $lastName): User
     {
         $user = new User($email);
         $user->setPassword($this->encoder->encodePassword($user, $password));
 
         $this->em->persist($user);
+        $this->em->flush();
+
+        $customer = new Customer(
+            $user,
+            $fistName,
+            $lastName,
+            null,
+            null,
+            $phone
+        );
+
+        $this->em->persist($customer);
         $this->em->flush();
 
         return $user;
