@@ -47,7 +47,7 @@ class ServiceRequestController extends AbstractBaseController
 
     public function listByUser(ServiceRequestService $serviceRequestService): JsonResponse
     {
-        $customerId = $this->getUser()->getCutomer()->getId();
+        $customerId = $this->getUser()->getCustomer()->getId();
         $serviceRequests = $serviceRequestService->getServiceRequestByUser($customerId);
 
         $serializedRequests = $this->_serializer->normalize($serviceRequests, 'array', [
