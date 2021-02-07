@@ -19,21 +19,21 @@ class Customer
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      *
-     * @Groups({"customer"})
+     * @Groups({"customer", "user:post"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=64)
      *
-     * @Groups({"customer"})
+     * @Groups({"customer", "user:post"})
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=64)
      *
-     * @Groups({"customer"})
+     * @Groups({"customer", "user:post"})
      */
     private $lastName;
 

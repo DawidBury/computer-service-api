@@ -52,6 +52,8 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Customer", mappedBy="user")
+     *
+     * @Groups({"user:post"})
      */
     private $customer;
 

@@ -34,7 +34,6 @@ class UserService
         $user->setPassword($this->encoder->encodePassword($user, $password));
 
         $this->em->persist($user);
-        $this->em->flush();
 
         $customer = new Customer(
             $user,
