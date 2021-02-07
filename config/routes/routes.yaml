@@ -2,7 +2,7 @@
 api.users.register:
     path: /users/register
     controller: App\Controller\UserController::register
-    methods: POST
+    methods: [POST, OPTIONS]
 
 api.users.get_all:
     path: /users
@@ -18,7 +18,7 @@ api.users.confirm:
 api.cms.create:
     path: /cms
     controller: App\Controller\CMSController:create
-    methods: POST
+    methods: [POST, OPTIONS]
 
 api.cms.get:
     path: /cms
@@ -28,13 +28,13 @@ api.cms.get:
 api.cms.update:
     path: /cms
     controller: App\Controller\CMSController:update
-    methods: PUT
+    methods: [PUT, OPTIONS]
 
 #TASK-TYPE
 api.task-type.create:
     path: /task-types
     controller: App\Controller\TaskTypeController:create
-    methods: POST
+    methods: [POST, OPTIONS]
 
 api.task-type.list:
     path: /task-types
@@ -45,7 +45,7 @@ api.task-type.list:
 api.tasks.create:
     path: /tasks
     controller: App\Controller\TaskController:create
-    methods: POST
+    methods: [POST, OPTIONS]
 
 api.tasks.list:
     path: /tasks
@@ -56,7 +56,7 @@ api.tasks.list:
 api.employee.create:
     path: /employees
     controller: App\Controller\EmployeeController:create
-    methods: POST
+    methods: [POST, OPTIONS]
 
 api.employee.list:
     path: /employees
@@ -67,7 +67,7 @@ api.employee.list:
 api.customer.create:
     path: /customers
     controller: App\Controller\CustomerController:create
-    methods: POST
+    methods: [POST, OPTIONS]
 
 #SERVICE-REQUEST
 api.service-requests.create:
