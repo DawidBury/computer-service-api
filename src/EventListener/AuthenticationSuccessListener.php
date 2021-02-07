@@ -38,6 +38,7 @@ class AuthenticationSuccessListener
             'id' => $user->getId(),
             'email' => $user->getEmail(),
             'token' => $event->getData()['token'],
+            'customerId' => $user->getCustomer()->getId(),
         ]);
     }
 }
