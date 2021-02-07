@@ -79,3 +79,8 @@ api.service-requests.list:
     path: /service-requests
     controller: App\Controller\ServiceRequestController:list
     methods: GET
+
+api.service-requests.list_by_user:
+    path: /service-requests/users
+    controller: App\Controller\ServiceRequestController:listByUser
+    methods: GET

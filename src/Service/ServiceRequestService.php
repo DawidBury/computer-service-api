@@ -45,4 +45,9 @@ class ServiceRequestService
     {
         return $this->serviceRequestRepository->findAll();
     }
+
+    public function getServiceRequestByUser($customerId): array
+    {
+        return $this->serviceRequestRepository->findBy(['customer' => $customerId]);
+    }
 }

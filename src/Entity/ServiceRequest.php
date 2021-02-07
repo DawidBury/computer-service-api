@@ -25,7 +25,7 @@ class ServiceRequest
     /**
      * @ORM\Column(type="string", length=64)
      *
-     * @Groups({"service-request:create"})
+     * @Groups({"service-request:create, service-request:list"})
      */
     private $subject;
 
@@ -37,22 +37,28 @@ class ServiceRequest
     /**
      * @ORM\Column(type="string", length=255)
      *
-     * @Groups({"service-request:create"})
+     * @Groups({"service-request:create", service-request:list})
      */
     private $description;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     *
+     * @Groups({"service-request:list"})
      */
     private $deadline;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     *
+     * @Groups({"service-request:list"})
      */
     private $proposedDeliveryTime;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Task", mappedBy="serviceRequest")
+     *
+     * @Groups({"service-request:list"})
      */
     private $task;
 

@@ -18,7 +18,7 @@ class Task
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      *
-     * @Groups({"task"})
+     * @Groups({"task, service-request:list"})
      */
     private $id;
 
@@ -31,6 +31,8 @@ class Task
 
     /**
      * @ORM\Column(type="boolean", options={"default": false})
+     *
+     * @Groups({"service-request:list"})
      */
     private $inProgress = false;
 
