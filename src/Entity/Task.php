@@ -18,7 +18,7 @@ class Task
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      *
-     * @Groups({"task, service-request:list"})
+     * @Groups({"task", "service-request:list"})
      */
     private $id;
 

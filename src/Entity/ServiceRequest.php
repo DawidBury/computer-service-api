@@ -25,7 +25,7 @@ class ServiceRequest
     /**
      * @ORM\Column(type="string", length=64)
      *
-     * @Groups({"service-request:create, service-request:list"})
+     * @Groups({"service-request:create", "service-request:list"})
      */
     private $subject;
 
@@ -37,7 +37,7 @@ class ServiceRequest
     /**
      * @ORM\Column(type="string", length=255)
      *
-     * @Groups({"service-request:create, service-request:list"})
+     * @Groups({"service-request:create", "service-request:list"})
      */
     private $description;
 
