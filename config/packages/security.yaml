@@ -28,7 +28,6 @@ security:
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
             user_checker: App\Service\UserEnabledChecker
         main:
-            pattern: ^/admin
             provider: app_user_provider
             anonymous: lazy
             guard:
