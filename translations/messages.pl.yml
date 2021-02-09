@@ -4,3 +4,19 @@ Employee: Pracownik
 Task: Zadanie
 TaskType: Rodzaj zadania
 ServiceRequest: Zgłoszenie
+Attribute: Atrybut
+Value: Wartość
+Active: Aktywny
+Subject: Temat
+Description: Opis
+Proposed delivery time: Proponowana data
+Customer: Klient
+Name: Nazwa
+Cost: Koszt
+Priority: Piorytet
+In progress: W trakcie
+Last name: Nazwisko
+First name: Imię
+Phone: Nr telefonu
+Business number: Nr telefonu
+
