@@ -67,7 +67,7 @@ class User implements UserInterface
      */
     private $enabled = false;
 
-    public function __construct(string $email)
+    public function __construct(?string $email = null)
     {
         $this->email = $email;
     }
@@ -167,5 +167,19 @@ class User implements UserInterface
     public function getCustomer()
     {
         return $this->customer;
+    }
+
+    public function setEmployee($employee)
+    {
+        $this->employee = $employee;
+
+        return $this;
+    }
+
+    public function setCustomer($customer)
+    {
+        $this->customer = $customer;
+
+        return $this;
     }
 }

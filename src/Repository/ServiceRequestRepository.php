@@ -22,7 +22,8 @@ class ServiceRequestRepository extends ServiceEntityRepository
     public static function available(ServiceRequestRepository $repository)
     {
         return $repository->createQueryBuilder('s')
-            ->where('s.subject is NULL');
+            ->leftJoin('s.task', 't')
+            ->where('t.serviceRequest is NULL');
     }
 
     // /**

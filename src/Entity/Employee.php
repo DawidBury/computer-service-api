@@ -57,7 +57,7 @@ class Employee
      */
     private $user;
 
-    public function __construct(string $firstName, string $lastName, string $businessNumber, User $user)
+    public function __construct(?string $firstName = null, ?string $lastName = null, ?string $businessNumber = null, ?User $user = null)
     {
         $this->firstName = $firstName;
         $this->lastName = $lastName;
@@ -96,8 +96,36 @@ class Employee
         return $this->serviceRequests;
     }
 
-    public function getUser(): User
+    public function getUser(): ?User
     {
         return $this->user;
+    }
+
+    public function setFirstName(?string $firstName): Employee
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    public function setLastName(?string $lastName): Employee
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    public function setBusinessNumber(?string $businessNumber): Employee
+    {
+        $this->businessNumber = $businessNumber;
+
+        return $this;
+    }
+
+    public function setUser(?User $user): Employee
+    {
+        $this->user = $user;
+
+        return $this;
     }
 }
