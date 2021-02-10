@@ -177,7 +177,7 @@ class Customer
         return $this->phone;
     }
 
-    public function setPhone(?string $phone): Customer
+    public function setPhone(string $phone): Customer
     {
         $this->phone = $phone;
 
