@@ -25,6 +25,11 @@ api.cms.get:
     controller: App\Controller\CMSController:list
     methods: GET
 
+api.cms.get_active:
+    path: /cms/active
+    controller: App\Controller\CMSController:listActive
+    methods: GET
+
 api.cms.update:
     path: /cms
     controller: App\Controller\CMSController:update

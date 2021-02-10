@@ -39,6 +39,11 @@ class CMSService
         return $this->cmsRepository->findAll();
     }
 
+    public function getAllActiveCMS(): array
+    {
+        return $this->cmsRepository->getAllActiveCMS();
+    }
+
     public function updateCMS(int $id, string $attribute, string $value, bool $active): CMS
     {
         $cmsContent = $this->cmsRepository->find($id);

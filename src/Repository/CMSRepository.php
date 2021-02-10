@@ -19,32 +19,12 @@ class CMSRepository extends ServiceEntityRepository
         parent::__construct($registry, CMS::class);
     }
 
-    // /**
-    //  * @return CMS[] Returns an array of CMS objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function getAllActiveCMS(): array
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
+            ->where('c.active = true')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?CMS
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

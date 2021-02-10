@@ -7,13 +7,9 @@ namespace App\Controller;
 use App\Constraints\CreateCMSConstraints;
 use App\Constraints\UpdateCMSConstraints;
 use App\Service\CMSService;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-/**
- * @IsGranted("ROLE_ADMIN")
- */
 class CMSController extends AbstractBaseController
 {
     public function create(Request $request, CMSService $cmsService): JsonResponse
@@ -26,7 +22,7 @@ class CMSController extends AbstractBaseController
         $cmsContent = $cmsService->createCMS($data['attribute'], $data['value']);
 
         $serializedCMS = $this->_serializer->normalize($cmsContent, 'array', [
-            'groups' => 'cms'
+            'groups' => 'cms',
         ]);
 
         return new JsonResponse($serializedCMS, JsonResponse::HTTP_CREATED);
@@ -37,7 +33,18 @@ class CMSController extends AbstractBaseController
         $cmsContent = $cmsService->getAllCMS();
 
         $serializedCMS = $this->_serializer->normalize($cmsContent, 'array', [
-            'groups' => 'cms'
+            'groups' => 'cms',
+        ]);
+
+        return new JsonResponse($serializedCMS, JsonResponse::HTTP_OK);
+    }
+
+    public function listActive(CMSService $cmsService): JsonResponse
+    {
+        $cmsContent = $cmsService->getAllActiveCMS();
+
+        $serializedCMS = $this->_serializer->normalize($cmsContent, 'array', [
+            'groups' => 'cms',
         ]);
 
         return new JsonResponse($serializedCMS, JsonResponse::HTTP_OK);
@@ -58,7 +65,7 @@ class CMSController extends AbstractBaseController
         );
 
         $serializedCMS = $this->_serializer->normalize($cmsContent, 'array', [
-            'groups' => 'cms'
+            'groups' => 'cms',
         ]);
 
         return new JsonResponse($serializedCMS, JsonResponse::HTTP_OK);
