@@ -93,9 +93,9 @@ class Customer
     private $user;
 
     public function __construct(
-        User $user,
-        string $firstName,
-        string $lastName,
+        ?User $user = null,
+        ?string $firstName = null,
+        ?string $lastName = null,
         ?\DateTime $birthday = null,
         ?string $gender = null,
         ?string $phone = null,
@@ -228,5 +228,12 @@ class Customer
     public function getUser(): User
     {
         return $this->user;
+    }
+
+    public function setUser(User $user): Customer
+    {
+        $this->user = $user;
+
+        return $this;
     }
 }
