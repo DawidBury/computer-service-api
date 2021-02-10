@@ -124,7 +124,7 @@ class Customer
         return $this->id;
     }
 
-    public function getFirstName(): string
+    public function getFirstName(): ?string
     {
         return $this->firstName;
     }
@@ -136,7 +136,7 @@ class Customer
         return $this;
     }
 
-    public function getLastName(): string
+    public function getLastName(): ?string
     {
         return $this->lastName;
     }
@@ -220,12 +220,12 @@ class Customer
         return $this;
     }
 
-    public function getServiceRequests(): ArrayCollection
+    public function getServiceRequests(): ?ArrayCollection
     {
         return $this->serviceRequests;
     }
 
-    public function getUser(): User
+    public function getUser(): ?User
     {
         return $this->user;
     }
