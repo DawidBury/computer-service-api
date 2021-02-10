@@ -76,7 +76,7 @@ class ServiceRequest
      */
     private $employee;
 
-    public function __construct(string $subject, string $description, Customer $customer)
+    public function __construct(?string $subject = '', ?string $description = '', ?Customer $customer = null)
     {
         $this->subject = $subject;
         $this->description = $description;
@@ -131,5 +131,61 @@ class ServiceRequest
     public function getEmployee(): ?Employee
     {
         return $this->employee;
+    }
+
+    public function setSubject(?string $subject): ServiceRequest
+    {
+        $this->subject = $subject;
+
+        return $this;
+    }
+
+    public function setType($type): ServiceRequest
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function setDescription(?string $description): ServiceRequest
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function setDeadline($deadline): ServiceRequest
+    {
+        $this->deadline = $deadline;
+
+        return $this;
+    }
+
+    public function setProposedDeliveryTime($proposedDeliveryTime): ServiceRequest
+    {
+        $this->proposedDeliveryTime = $proposedDeliveryTime;
+
+        return $this;
+    }
+
+    public function setTask($task): ServiceRequest
+    {
+        $this->task = $task;
+
+        return $this;
+    }
+
+    public function setCustomer(?Customer $customer): ServiceRequest
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    public function setEmployee($employee): ServiceRequest
+    {
+        $this->employee = $employee;
+
+        return $this;
     }
 }

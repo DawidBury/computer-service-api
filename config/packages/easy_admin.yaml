@@ -15,6 +15,7 @@ easy_admin:
     entities:
         User:
             class: App\Entity\User
+            disabled_actions: ['new']
             list:
                 fields:
                     - { property: email, type: email }
@@ -40,7 +41,7 @@ easy_admin:
                     - firstName
                     - lastName
                     - businessNumber
-                    - user
+                    - { property: user, type_options: { required: true, query_builder: App\Repository\UserRepository::availableEmployee } }
 
 
         Customer:
@@ -52,7 +53,13 @@ easy_admin:
                     - phone
                     - { property: id, label: ID Użytkownika, type_options: App\Entity\User }
                 sort: [lastName, ASC]
-
+            form:
+                fields:
+                    - { property: phone, type_options: { required: true } }
+                    - { property: firstName, type_options: { required: true } }
+                    - { property: lastName, type_options: { required: true } }
+                    - { property: user, type_options: { required: true, query_builder: App\Repository\UserRepository::available } }
+                    - birthday
 
         Task:
             class: App\Entity\Task
@@ -66,12 +73,10 @@ easy_admin:
                 sort: [id, ASC]
             form:
                 fields:
+                    - { property: serviceRequest, type_options: { query_builder: App\Repository\ServiceRequestRepository::available, required: true } }
                     - priority
                     - taskType
                     - inProgress
-                    - property: serviceRequest
-                      type_options:
-                          query_builder: App\Repository\ServiceRequestRepository::available
 
 
         TaskType:
@@ -102,10 +107,10 @@ easy_admin:
                 filters: [subject, task, employee]
             form:
                 fields:
-                    - subject
-                    - proposedDeliveryTime
-                    - task
-                    - employee
+                    - { property: subject, type_options: { required: true } }
+                    - { property: description, type_options: { required: true } }
+                    - { property: proposedDeliveryTime, type_options: { required: true } }
+                    - { property: employee, type_options: { required: true } }
 
 
         CMS:

@@ -20,4 +20,18 @@ class UserRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, User::class);
     }
+
+    public static function available(ServiceEntityRepository $repository)
+    {
+        return $repository->createQueryBuilder('u')
+            ->leftJoin('u.customer', 'c')
+            ->where('c.user is NULL');
+    }
+
+    public static function availableEmployee(ServiceEntityRepository $repository)
+    {
+        return $repository->createQueryBuilder('u')
+            ->leftJoin('u.employee', 'c')
+            ->where('c.user is NULL');
+    }
 }
