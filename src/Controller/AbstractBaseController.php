@@ -6,7 +6,7 @@ namespace App\Controller;
 
 use App\Service\ValidatorService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
 use Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader;
@@ -23,7 +23,7 @@ abstract class AbstractBaseController extends AbstractController
     {
         $classMetadataFactory = new ClassMetadataFactory(new AnnotationLoader(new AnnotationReader()));
         $normalizer = new ObjectNormalizer($classMetadataFactory);
-        $this->_serializer = new Serializer([$normalizer]);
+        $this->_serializer = new Serializer([new DateTimeNormalizer(), $normalizer]);
         $this->_validatorService = $validatorService;
     }
 }
