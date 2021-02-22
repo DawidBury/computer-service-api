@@ -1,3 +1,11 @@
 api:
     prefix: /api
     resource: 'routes/routes.yaml'
+
+app_logout:
+    path: /logout
+    methods: GET
+
+app_main:
+    path: /
+    controller: App\Controller\SecurityController:index

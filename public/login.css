@@ -73,3 +73,23 @@ form {
     border: 2px solid rgb(221, 164, 59);
     margin-top: 2rem;
 }
+
+.main-page-login {
+    color: rgb(221, 164, 59);
+    margin: 0 auto;
+    text-decoration: none;
+    font-size: 36px;
+}
+
+.main-page-login:hover {
+    color: rgb(255, 166, 0);
+}
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}

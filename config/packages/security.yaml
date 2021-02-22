@@ -40,6 +40,8 @@ security:
         main:
             provider: app_user_provider
             anonymous: lazy
+            logout:
+                path: app_logout
             guard:
                 authenticators:
                     - App\Security\AppAuthenticator

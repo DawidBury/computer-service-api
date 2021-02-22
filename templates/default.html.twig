@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Strona główna{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('login.css') }}">
+{% endblock %}
+{% block body %}
+    <section class="landing">
+        <div class="center vertical-center">
+            <div class="center">
+                <a href="{{ path('app_login', { error: null }) }}" class="main-page-login">
+                    Logowanie do panelu
+                </a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
